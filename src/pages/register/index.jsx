@@ -17,18 +17,23 @@ const RegistrationForm = () => {
     const { name, phone } = values;
     const file = fileList[0]?.originFileObj;
     setLoading(true);
+
     if (!file) {
       message.error("Faylni tanlang!");
+      setLoading(false);
       return;
     }
 
     const formData = new FormData();
-    formData.append("fileContent", await getBase64(file));
-    formData.append("filename", file.name);
-    formData.append("name", name);
-    formData.append("phone", phone);
 
     try {
+      // Faylni base64 formatiga aylantirish
+      const base64File = await getBase64(file);
+      formData.append("fileContent", base64File);
+      formData.append("filename", file.name);
+      formData.append("name", name);
+      formData.append("phone", phone);
+
       const response = await fetch(`${import.meta.env.VITE_API_URL}`, {
         method: "POST",
         body: formData,
@@ -45,6 +50,7 @@ const RegistrationForm = () => {
       setLoading(false);
     }
   };
+
   const copyToClipboard = () => {
     navigator.clipboard
       .writeText("5614 6819 1836 7438")
