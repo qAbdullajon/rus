@@ -1,0 +1,32 @@
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;800;900&display=swap);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", Arial, sans-serif;
+}
+.react-tel-input .form-control {
+  border: 0.8px solid #000 !important; /* Default border rangi */
+}
+
+.react-tel-input .form-control:focus {
+  border: 0.8px solid #000 !important; /* Fokuslangan holatda ham border o'zgarmaydi */
+  box-shadow: none !important; /* Fokus effektini olib tashlash */
+}
+.ant-input {
+  border: 0.8px solid #000 !important; /* Default border rangi */
+}
+
+.ant-input:focus {
+  border: 0.8px solid #000 !important; /* Fokus holatda ham border o'zgarmaydi */
+  box-shadow: none !important; /* Fokus effekti olib tashlanadi */
+}
+.yozish.ant-btn:hover {
+  border: none;
+  background-color: #d1444e !important;
+  color: white !important;
+}
