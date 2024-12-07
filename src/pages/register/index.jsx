@@ -135,7 +135,7 @@ const RegistrationForm = () => {
               />
             </Form.Item>
             <p className="text-base">To'lov chekini yuklang</p>
-            <Form.Item name="attach" rules={[{ required: true, message: "Iltimos, telefon raqamingizni kiriting!" }]} valuePropName="fileList" getValueFromEvent={(e) => e && e.fileList}>
+            <Form.Item name="attach" rules={[{ required: true, message: "Iltimos, tolov chekini kiriting!" }]} valuePropName="fileList" getValueFromEvent={(e) => e && e.fileList}>
               <Upload fileList={fileList} beforeUpload={() => false} onChange={handleFileChange} maxCount={1} showUploadList={{ showRemoveIcon: true }}>
                 <Button icon={<UploadOutlined />}>File yuklash</Button>
               </Upload>
