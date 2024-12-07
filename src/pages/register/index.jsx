@@ -33,7 +33,6 @@ const RegistrationForm = () => {
       formData.append("filename", file.name);
       formData.append("name", name);
       formData.append("phone", phone);
-
       const response = await fetch(`${import.meta.env.VITE_API_URL}`, {
         method: "POST",
         body: formData,
