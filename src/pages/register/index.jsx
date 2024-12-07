@@ -10,13 +10,13 @@ import { faCopy } from "@fortawesome/free-solid-svg-icons";
 const RegistrationForm = () => {
   const [fileList, setFileList] = useState([]);
   const [time, setTime] = useState(15 * 60);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleFileChange = ({ fileList }) => setFileList(fileList);
-
   const handleSubmit = async (values) => {
     const { name, phone } = values;
     const file = fileList[0]?.originFileObj;
-
+    setLoading(true);
     if (!file) {
       message.error("Faylni tanlang!");
       return;
@@ -29,7 +29,7 @@ const RegistrationForm = () => {
     formData.append("phone", phone);
 
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwbpVXZlG6JuHai3c77pGMW34xrCa8RGBOxF8cO017PHzr9W4c-T8XruBx-bz7V924/exec", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}`, {
         method: "POST",
         body: formData,
       });
@@ -41,6 +41,8 @@ const RegistrationForm = () => {
       }
     } catch (error) {
       message.error("Xato: " + error.message);
+    } finally {
+      setLoading(false);
     }
   };
   const copyToClipboard = () => {
@@ -134,7 +136,7 @@ const RegistrationForm = () => {
             </Form.Item>
 
             <Form.Item>
-              <Button size="large" type="primary" htmlType="submit" style={{ width: "100%" }}>
+              <Button loading={loading} size="large" type="primary" htmlType="submit" style={{ width: "100%" }}>
                 DAVOM ETISH
               </Button>
             </Form.Item>
