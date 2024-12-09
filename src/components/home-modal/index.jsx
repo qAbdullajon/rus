@@ -3,26 +3,25 @@ import { Button, Form, Input, Modal } from "antd";
 const HomeModal = ({ open, onCancel }) => {
   const [form] = Form.useForm();
   const onSubmit = async (value) => {
-    console.log(value);
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbz6THTGaQkXCKvZBr2VdHi4fT3vUpOIkm1c2C0bEUkr6mOM83NlcbiGrlRF9eLkxCbn/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbzEeCfbKOZP77FkmL2evyOeili41Md1MsydzUw0zfQqpBLlCMz_ld8wyV6Pk0ybZF8w/exec", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // Yuborilayotgan ma'lumot turi JSON ekanligini bildiradi
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(value),
       })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(`Serverda xatolik: ${res.status}`);
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Serverda xatolik: ${response.status}`);
           }
-          return res.json(); // Javobni JSON formatda olish
+          return response.json();
         })
         .then((result) => {
-          console.log("Serverdan kelgan javob:", result); // Serverdan javob
+          console.log("Serverdan kelgan javob:", result);
         })
         .catch((error) => {
-          console.error("Xatolik:", error.message); // Xatolikni konsolga chiqarish
+          console.error("Xatolik:", error.message);
         });
     } catch (err) {
       console.log(err);
