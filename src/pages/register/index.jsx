@@ -28,7 +28,6 @@ const RegistrationForm = () => {
     const formData = new FormData();
 
     try {
-      // Faylni base64 formatiga aylantirish
       const base64File = await getBase64(file);
       formData.append("fileContent", base64File);
       formData.append("filename", file.name);

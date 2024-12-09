@@ -3,29 +3,32 @@ import { Button, Form, Input, Modal } from "antd";
 const HomeModal = ({ open, onCancel }) => {
   const [form] = Form.useForm();
   const onSubmit = async (value) => {
-    try {
-      fetch("https://script.google.com/macros/s/AKfycbzEeCfbKOZP77FkmL2evyOeili41Md1MsydzUw0zfQqpBLlCMz_ld8wyV6Pk0ybZF8w/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(value),
+    const url = "https://script.google.com/macros/s/AKfycbxx1mW73I3gvtP3--JsYJsv0zpkQQ-a4rPKZy3ggZAZu2AzbavaUVHT7LwmdPEQ_Fbe/exec"; // Joylangan Web App URL-ni kiriting
+
+    const data = {
+      Date: new Date().toISOString(), // Hozirgi sana
+      Name: "John Doe", // Ismingiz
+      Phone: "+1234567890", // Telefon raqam
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbz1nnWvMCDL6417SCVXA3tI0HOztNbNAKGY5WozexFUfXgvfyoERfcSgcsYl32jpXzv/exec", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.success) {
+          console.log("Data added successfully:", result.message);
+        } else {
+          console.error("Error adding data:", result.message);
+        }
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Serverda xatolik: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((result) => {
-          console.log("Serverdan kelgan javob:", result);
-        })
-        .catch((error) => {
-          console.error("Xatolik:", error.message);
-        });
-    } catch (err) {
-      console.log(err);
-    }
+      .catch((error) => {
+        console.error("Request failed:", error);
+      });
   };
   return (
     <>
