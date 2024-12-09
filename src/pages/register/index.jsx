@@ -6,7 +6,6 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/bootstrap.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy } from "@fortawesome/free-solid-svg-icons";
-const apikey = import.meta.env.VITE_API_URL;
 
 const RegistrationForm = () => {
   const [fileList, setFileList] = useState([]);

@@ -10,11 +10,11 @@
   font-family: "Montserrat", Arial, sans-serif;
 }
 .react-tel-input .form-control {
-  border: 0.8px solid #000 !important; /* Default border rangi */
+  /* border: 0.8px solid #000 !important;  */
 }
 
 .react-tel-input .form-control:focus {
-  border: 0.8px solid #000 !important; /* Fokuslangan holatda ham border o'zgarmaydi */
+  /* border: 0.8px solid #000 !important; Fokuslangan holatda ham border o'zgarmaydi */
   box-shadow: none !important; /* Fokus effektini olib tashlash */
 }
 .ant-input {
@@ -38,4 +38,14 @@
 .submit-btn:hover {
   border: none !important;
   color: #000 !important;
+}
+.home-input,
+.home-input:focus {
+  padding-block: 14px;
+  border: 1px solid #c9c9c9 !important;
+}
+.phone-input,
+.phone-input:focus {
+  border: 0.8px solid #c9c9c9 !important;
+  border-radius: 8px;
 }
