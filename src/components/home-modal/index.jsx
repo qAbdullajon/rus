@@ -1,25 +1,17 @@
 import React, { useState } from "react";
 import { Button, Form, Input, Modal, message } from "antd";
+import axios from "axios";
+
 const HomeModal = ({ open, onCancel }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+
   const onSubmit = async (values) => {
-    const { name, phone } = values;
     setLoading(true);
-
     try {
-      const response = await fetch("https://script.google.com/macros/s/AKfycbz4Jbe_Va4_wVS8HtsE0xZwpM8on9nDbwZsyxGPVAHT97VTw6AfRMAYpvSZfLQfC-mhOg/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, phone }),
-      });
-
-      if (response.ok) {
-        alert("/obuna");
-      } else {
-        message.error("Ma'lumot yuborishda xato.");
+      const res = await axios.post("https://api.sheetbest.com/sheets/861556af-de12-4288-a700-1cfcc8e815dc", { Name: values.name, Phone: values.phone });
+      if (res.status === 200) {
+        console.log(res);
       }
     } catch (error) {
       message.error("Xato: " + error.message);
@@ -29,26 +21,34 @@ const HomeModal = ({ open, onCancel }) => {
   };
 
   return (
-    <>
-      <Modal open={open} footer={null} onCancel={onCancel}>
-        <p className="text-center text-xl font-semibold pb-3">
-          Ro'yxatdan o'tish uchun <br /> ma'lumotlaringizni kiriting!
-        </p>
-        <Form onFinish={onSubmit} form={form} layout="vertical">
-          <Form.Item name="Name" label="Ismingiz" rules={[{ required: true, message: "Iltimos, ismingizni kiriting!" }]}>
-            <Input className="py-3" size="large" placeholder="name" />
-          </Form.Item>
-          <Form.Item name="phone" label="Telefon raqamingiz" rules={[{ required: true, message: "Iltimos, telifon reqamingizni kiriting!" }]}>
-            <Input className="py-3" size="large" placeholder="Phone number" />
-          </Form.Item>
-          <Form.Item>
-            <Button loading={loading} htmlType="submit" className="submit-btn w-full uppercase mt-5 font-bold" size="large">
-              Davom etish
-            </Button>
-          </Form.Item>
-        </Form>
-      </Modal>
-    </>
+    <Modal open={open} footer={null} onCancel={onCancel}>
+      <p className="text-center text-xl font-semibold pb-3">
+        Ro'yxatdan o'tish uchun <br /> ma'lumotlaringizni kiriting!
+      </p>
+      <Form onFinish={onSubmit} form={form} layout="vertical">
+        <Form.Item name="name" label="Ismingiz" rules={[{ required: true, message: "Iltimos, ismingizni kiriting!" }]}>
+          <Input className="py-3" size="large" placeholder="Ismingiz" />
+        </Form.Item>
+        <Form.Item
+          name="phone"
+          label="Telefon raqamingiz"
+          rules={[
+            {
+              required: true,
+              message: "Iltimos, telefon raqamingizni kiriting!",
+            },
+          ]}
+        >
+          <Input className="py-3" size="large" placeholder="Telefon raqami" />
+        </Form.Item>
+        <Form.Item>
+          <Button loading={loading} htmlType="submit" className="submit-btn w-full uppercase mt-5 font-bold" size="large">
+            Davom etish
+          </Button>
+        </Form.Item>
+      </Form>
+    </Modal>
   );
 };
+
 export default HomeModal;
