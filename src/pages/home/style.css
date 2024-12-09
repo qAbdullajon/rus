@@ -1,0 +1,24 @@
+.bg-img {
+  background-image: url("../../assets/bg-img.png");
+}
+.circle-sides {
+  clip-path: ellipse(50% 180% at 50% 50%);
+}
+.iframe-container {
+  position: relative;
+  width: calc(100% - 32px); /* Yonlardan 16px bo‘sh joy */
+  max-width: 700px; /* Maksimal kenglik */
+  aspect-ratio: 16 / 9; /* Video nisbat */
+  margin: 0 auto; /* Markazga joylash */
+  overflow: hidden; /* Ortib ketgan qismlarni yashirish */
+  padding: 0 16px; /* Yon tomondan bo‘sh joy */
+}
+
+iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
