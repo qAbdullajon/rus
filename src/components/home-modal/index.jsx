@@ -43,7 +43,14 @@ const HomeModal = ({ open, onCancel }) => {
         Ro'yxatdan o'tish uchun <br /> ma'lumotlaringizni kiriting!
       </p>
       <Form autoComplete="off" onFinish={onSubmit} form={form} layout="vertical">
-        <Form.Item name="name" label="Ismingiz" rules={[{ required: true, message: "Iltimos, ismingizni kiriting!" }]}>
+        <Form.Item
+          name="name"
+          label="Ismingiz"
+          rules={[
+            { required: true, message: "Iltimos, ismingizni kiriting!" },
+            { min: 4, message: "Iltimos, to'liq ismingizni yozing" },
+          ]}
+        >
           <Input className="py-3 home-input" size="large" placeholder="Ismingiz" />
         </Form.Item>
         <Form.Item
@@ -53,6 +60,10 @@ const HomeModal = ({ open, onCancel }) => {
             {
               required: true,
               message: "Iltimos, telefon raqamingizni kiriting!",
+            },
+            {
+              min: 11,
+              message: "Iltimos, telifon raqamni oxirigacha yozing",
             },
           ]}
         >

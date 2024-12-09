@@ -117,11 +117,30 @@ const RegistrationForm = () => {
               phone: "",
             }}
           >
-            <Form.Item name="name" rules={[{ required: true, message: "Iltimos, ism va familiyangizni kiriting!" }]}>
+            <Form.Item
+              name="name"
+              rules={[
+                { required: true, message: "Iltimos, ism va familiyangizni kiriting!" },
+                {
+                  min: 4,
+                  message: "Iltimos, to'liq ismingizni yozing",
+                },
+              ]}
+            >
               <Input size="large" placeholder="Ismingiz" style={{ height: "48px" }} />
             </Form.Item>
 
-            <Form.Item name="phone" style={{ marginBottom: "10px" }} rules={[{ required: true, message: "Iltimos, telefon raqamingizni kiriting!" }]}>
+            <Form.Item
+              name="phone"
+              style={{ marginBottom: "10px" }}
+              rules={[
+                { required: true, message: "Iltimos, telefon raqamingizni kiriting!" },
+                {
+                  min: 11,
+                  message: "Iltimos, telifon raqamni oxirigacha yozing",
+                },
+              ]}
+            >
               <PhoneInput
                 country={"uz"}
                 inputStyle={{
