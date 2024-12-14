@@ -24,12 +24,12 @@ const HomeModal = ({ open, onCancel }) => {
       Name: values.name.trim(),
       Phone: values.phone.replace(" ", ""),
     };
-    console.log(data);
+
     try {
       const res = await axios.post("https://api.sheetbest.com/sheets/861556af-de12-4288-a700-1cfcc8e815dc", data);
-      if (res.status === 200) {
+      setTimeout(() => {
         navigate("/tolov-sahifasi");
-      }
+      }, 1000);
     } catch (error) {
       message.error("Xato: " + error.message);
     } finally {

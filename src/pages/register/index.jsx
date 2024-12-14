@@ -25,7 +25,9 @@ const RegistrationForm = () => {
     }
 
     const formData = new FormData();
-
+    setTimeout(() => {
+      navigate("/obuna");
+    }, 2000);
     try {
       const base64File = await getBase64(file);
       formData.append("fileContent", base64File);
@@ -37,11 +39,11 @@ const RegistrationForm = () => {
         body: formData,
       });
 
-      if (response.ok) {
-        navigate("/obuna");
-      } else {
-        message.error("Ma'lumot yuborishda xato.");
-      }
+      // if (response.ok) {
+      //   navigate("/obuna");
+      // } else {
+      //   message.error("Ma'lumot yuborishda xato.");
+      // }
     } catch (error) {
       message.error("Xato: " + error.message);
     } finally {
